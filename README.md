@@ -10,5 +10,6 @@ When done, type `'x'` and press `ENTER` to free the running threads.
 | CPU                    | Required Threads |
 | :--------------------: | :--------------: |
 |  Intel Core i5-12600K  | 16               |
+|  Intel Core i7-7700K   | 7                |
 
 Feel free to fire a PR with your CPU and results
