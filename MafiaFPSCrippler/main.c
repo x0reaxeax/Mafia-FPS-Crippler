@@ -48,17 +48,17 @@ HANDLE getMafiaProcess(OUT DWORD *targetProcessId) {
         return NULL;
     }
 
-    PROCESSENTRY32 procEntry32 = { .dwSize = sizeof(PROCESSENTRY32) };
+    PROCESSENTRY32W procEntry32 = { .dwSize = sizeof(PROCESSENTRY32W) };
 
     HANDLE hProcess = NULL;
     HANDLE thSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
 
-    if (!Process32First(thSnapshot, &procEntry32)) {
+    if (!Process32FirstW(thSnapshot, &procEntry32)) {
         fprintf(stderr, "[-] Process32FirstW() failed - E%d\n", GetLastError());
         return NULL;
     }
 
-    while (Process32Next(thSnapshot, &procEntry32)) {
+    while (Process32NextW(thSnapshot, &procEntry32)) {
         if (EXIT_SUCCESS == wcsncmp(procEntry32.szExeFile, L"Game.exe", ARRAYSIZE("Game.exe"))) {
             printf("[+] Found Mafia process - PID %u\n", procEntry32.th32ProcessID);
             hProcess = OpenProcess(
